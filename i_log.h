@@ -6,11 +6,10 @@
 #define LOGGING_I_LOG_H
 
 
-
-class I_Log {
+class I_Log
+{
 
 };
-
 
 
 #endif //LOGGING_I_LOG_H

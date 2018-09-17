@@ -6,7 +6,8 @@
 #define LOGGING_FILE_LOG_H
 
 
-class FileLog {
+class FileLog
+{
 
 };
 

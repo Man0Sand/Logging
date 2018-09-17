@@ -6,11 +6,10 @@
 #define LOGGING_CONSOLE_LOG_H
 
 
-
-class ConsoleLog {
+class ConsoleLog
+{
 
 };
-
 
 
 #endif //LOGGING_CONSOLE_LOG_H
