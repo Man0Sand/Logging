@@ -3,3 +3,8 @@
 //
 
 #include "file_log.h"
+
+void FileLog::write(const std::string &entry)
+{
+
+}

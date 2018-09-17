@@ -5,10 +5,12 @@
 #ifndef LOGGING_I_LOG_H
 #define LOGGING_I_LOG_H
 
+#include <string>
 
 class I_Log
 {
-
+public:
+    virtual void write(const std::string& entry) = 0;
 };
 
 

@@ -3,3 +3,8 @@
 //
 
 #include "console_log.h"
+
+void ConsoleLog::write(const std::string &entry)
+{
+
+}

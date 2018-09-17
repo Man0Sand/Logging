@@ -9,7 +9,7 @@
 
 class FileLog : public I_Log
 {
-
+    void write(const std::string& entry);
 };
 
 
