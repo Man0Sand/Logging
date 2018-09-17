@@ -5,8 +5,9 @@
 #ifndef LOGGING_CONSOLE_LOG_H
 #define LOGGING_CONSOLE_LOG_H
 
+#include "i_log.h"
 
-class ConsoleLog
+class ConsoleLog : public I_Log
 {
 
 };
