@@ -6,5 +6,9 @@
 
 void FileLog::write(const std::string &entry)
 {
+    // check the log file exists: if does, open it. if not, create one.
 
+    // write the log entry to the file
+
+    // close the file
 }

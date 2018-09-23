@@ -9,7 +9,7 @@
 
 class ConsoleLog : public I_Log
 {
-    void write(const std::string& entry);
+    void write(const std::string& entry) override;
 };
 
 

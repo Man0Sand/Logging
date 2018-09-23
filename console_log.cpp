@@ -6,5 +6,5 @@
 
 void ConsoleLog::write(const std::string &entry)
 {
-
+    // write the entry to the console
 }
