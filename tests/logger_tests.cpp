@@ -18,14 +18,17 @@ TEST(LoggerTest, TestDifferentLogs)
     ASSERT_EQ(0, log_mock_2.get_call_count());
 
     logger.set_logger(&log_mock_1);
+    logger.write("", Logger::kCritical);
     ASSERT_EQ(1, log_mock_1.get_call_count());
     ASSERT_EQ(0, log_mock_2.get_call_count());
 
     logger.set_logger(&log_mock_2);
+    logger.write("", Logger::kCritical);
     ASSERT_EQ(1, log_mock_1.get_call_count());
     ASSERT_EQ(1, log_mock_2.get_call_count());
 
     logger.set_logger(nullptr);
+    logger.write("", Logger::kCritical);
     ASSERT_EQ(1, log_mock_1.get_call_count());
     ASSERT_EQ(1, log_mock_2.get_call_count());
 }

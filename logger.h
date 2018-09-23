@@ -21,9 +21,9 @@ public:
         kDebug = 4
     };
     Logger();
-    void write(std::string entry, Level level);
+    void write(const std::string& entry, Level level);
     void set_level(Level level);
-    void set_logger(I_Log* log);
+    void set_logger(I_Log* p_log);
     Level get_level();
 private:
     Level level_;

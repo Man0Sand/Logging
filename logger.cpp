@@ -10,27 +10,31 @@ p_log_(nullptr)
 {
 }
 
-void Logger::write(std::string entry, Logger::Level level)
+void Logger::write(const std::string& entry, Logger::Level level)
 {
-    // check that level is lower or equal to the set level
+    if (level_ < level)
+    {
+        return;
+    }
+    if (!p_log_)
+    {
+        return;
+    }
 
-    // check that p_log_ is not nullptr
-
-    // call the log writing function
+    p_log_->write(entry);
 }
 
 void Logger::set_level(Logger::Level level)
 {
-    // set level according to the argument
+    level_ = level;
 }
 
 Logger::Level Logger::get_level()
 {
-    // return the level
-    return kWarning;
+    return level_;
 }
 
-void Logger::set_logger(I_Log* log)
+void Logger::set_logger(I_Log* p_log)
 {
-    // set logger according to the argument
+    p_log_ = p_log;
 }
