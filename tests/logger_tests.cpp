@@ -11,7 +11,9 @@ TEST(LoggerTest, TestDifferentLogs)
 {
     LogMock log_mock_1 = LogMock();
     LogMock log_mock_2 = LogMock();
-    Logger logger = Logger();
+    Logger& logger = Logger::get_instance();
+    logger.set_level(Logger::kCritical);
+    logger.set_logger(nullptr);
 
     logger.write("", Logger::kCritical);
     ASSERT_EQ(0, log_mock_1.get_call_count());
@@ -36,7 +38,10 @@ TEST(LoggerTest, TestDifferentLogs)
 TEST(LoggerTest, TestCriticalLogLevel)
 {
     LogMock log_mock = LogMock();
-    Logger logger = Logger();
+    Logger& logger = Logger::get_instance();
+    logger.set_level(Logger::kCritical);
+    logger.set_logger(nullptr);
+
     logger.set_logger(&log_mock);
     logger.set_level(Logger::kCritical);
 
@@ -53,7 +58,10 @@ TEST(LoggerTest, TestCriticalLogLevel)
 TEST(LoggerTest, TestWarningLogLevel)
 {
     LogMock log_mock = LogMock();
-    Logger logger = Logger();
+    Logger& logger = Logger::get_instance();
+    logger.set_level(Logger::kCritical);
+    logger.set_logger(nullptr);
+
     logger.set_logger(&log_mock);
     logger.set_level(Logger::kWarning);
 
@@ -70,7 +78,10 @@ TEST(LoggerTest, TestWarningLogLevel)
 TEST(LoggerTest, TestDebugLogLevel)
 {
     LogMock log_mock = LogMock();
-    Logger logger = Logger();
+    Logger& logger = Logger::get_instance();
+    logger.set_level(Logger::kCritical);
+    logger.set_logger(nullptr);
+
     logger.set_logger(&log_mock);
     logger.set_level(Logger::kDebug);
 
@@ -86,7 +97,10 @@ TEST(LoggerTest, TestDebugLogLevel)
 
 TEST(LoggerTest, TestGettersAndSetters)
 {
-    Logger logger = Logger();
+    Logger& logger = Logger::get_instance();
+    logger.set_level(Logger::kCritical);
+    logger.set_logger(nullptr);
+
     ASSERT_EQ(Logger::kCritical, logger.get_level());
 
     logger.set_level(Logger::kDebug);
@@ -103,4 +117,36 @@ TEST(LoggerTest, TestGettersAndSetters)
 
     logger.set_level(Logger::kCritical);
     ASSERT_EQ(Logger::kCritical, logger.get_level());
+}
+
+TEST(LoggerTest, TestSingleton)
+{
+    Logger& logger1 = Logger::get_instance();
+    logger1.set_level(Logger::kCritical);
+    logger1.set_logger(nullptr);
+
+    Logger& logger2 = Logger::get_instance();
+    logger2.set_level(Logger::kCritical);
+    logger2.set_logger(nullptr);
+
+    LogMock log_mock_1 = LogMock();
+    LogMock log_mock_2 = LogMock();
+
+    logger1.set_logger(&log_mock_1);
+
+    logger1.write("", Logger::kCritical);
+    ASSERT_EQ(1, log_mock_1.get_call_count());
+    ASSERT_EQ(0, log_mock_2.get_call_count());
+
+    logger2.set_logger(&log_mock_2);
+
+    logger1.write("", Logger::kCritical);
+    ASSERT_EQ(1, log_mock_1.get_call_count());
+    ASSERT_EQ(1, log_mock_2.get_call_count());
+
+    logger1.set_logger(&log_mock_1);
+
+    logger2.write("", Logger::kCritical);
+    ASSERT_EQ(2, log_mock_1.get_call_count());
+    ASSERT_EQ(1, log_mock_2.get_call_count());
 }

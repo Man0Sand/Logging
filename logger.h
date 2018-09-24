@@ -20,12 +20,24 @@ public:
         kInfo = 3,
         kDebug = 4
     };
-    Logger();
+
+    Logger(Logger const&) = delete;
+
+    void operator=(Logger const&) = delete;
+
     void write(const std::string& entry, Level level);
+
     void set_level(Level level);
+
     void set_logger(I_Log* p_log);
+
     Level get_level();
+
+    static Logger& get_instance();
+
 private:
+    Logger();
+
     Level level_;
     I_Log* p_log_;
 };

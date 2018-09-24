@@ -4,9 +4,9 @@
 
 #include "logger.h"
 
-Logger::Logger():
-level_(kCritical),
-p_log_(nullptr)
+Logger::Logger() :
+        level_(kCritical),
+        p_log_(nullptr)
 {
 }
 
@@ -37,4 +37,10 @@ Logger::Level Logger::get_level()
 void Logger::set_logger(I_Log* p_log)
 {
     p_log_ = p_log;
+}
+
+Logger& Logger::get_instance()
+{
+    static Logger logger;
+    return logger;
 }
